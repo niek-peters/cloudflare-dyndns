@@ -6,6 +6,17 @@ run();
 setInterval(run, 1000 * 60 * MINUTE_INTERVAL);
 
 async function run() {
+  const now = new Date();
+  console.log(
+    `\n--- RERUNNING (${now.getDate()}/${
+      now.getMonth() + 1
+    }/${now.getFullYear()} | ${prependZero(
+      now.getHours().toString()
+    )}:${prependZero(now.getMinutes().toString())}:${prependZero(
+      now.getSeconds().toString()
+    )}) ---`
+  );
+
   try {
     const ip = await getIP();
 
@@ -34,6 +45,8 @@ async function run() {
     }
   } catch (e) {
     console.error(`ERROR: ${(e as Error).message}`);
+  } finally {
+    console.log(`--- FINISHED (will rerun in ${MINUTE_INTERVAL} minutes) ---`);
   }
 }
 
@@ -100,4 +113,8 @@ async function updateRecord(
     );
 
   console.log(`SUCCESS: Updated A-record for '${domain}' to '${ip}'`);
+}
+
+function prependZero(num: string) {
+  return num.length === 1 ? `0${num}` : num;
 }
