@@ -2,6 +2,9 @@
   "name": "ip-updater",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "deploy": "docker build --platform linux/arm64/v8 -t niekpeters/cloudflare-dyndns . && docker push niekpeters/cloudflare-dyndns"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

@@ -21,7 +21,7 @@ async function run() {
         if (DOMAINS.includes(record.name) && record.type === "A") {
           if (record.content === ip)
             console.log(
-              `SUCCESS: A record for '${record.name}' was already set to '${ip}'`
+              `SUCCESS: A-record for '${record.name}' was already set to '${ip}'`
             );
           else
             try {
@@ -96,8 +96,8 @@ async function updateRecord(
 
   if (!res.ok)
     throw new Error(
-      `Could not update A record for '${domain}' to '${ip}' | ${await res.text()}`
+      `Could not update A-record for '${domain}' to '${ip}' | ${await res.text()}`
     );
 
-  console.log(`SUCCESS: Updated A record for '${domain}' to '${ip}'`);
+  console.log(`SUCCESS: Updated A-record for '${domain}' to '${ip}'`);
 }
